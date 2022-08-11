@@ -154,10 +154,10 @@ function main() {
 
   lizard_div.addEventListener('click', function() {
     game("lizard");
+  })
 
   spock_div.addEventListener('click', function() {
     game("spock");
-  })
   })
 }
 
