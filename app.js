@@ -24,6 +24,51 @@ function convertToWord(letter) {
   if (letter === "spock") return "Spock";
 }
 
+function getVerb(userChoice, computerChoice) {
+  switch(userChoice + computerChoice) {
+    case "scissorspaper":
+    case "paperscissors":
+      return "cuts";
+      break;
+    case "paperrock":
+    case "rockpaper":
+      return "covers";
+      break;
+    case "rocklizard":
+    case "lizardrock":
+      return "crushes";
+      break;
+    case "lizardspock":
+    case "spocklizard":
+      return "poisons";
+      break;
+    case "spockscissors":
+    case "scissorsspock":
+      return "smashes";
+      break;
+    case "scissorslizard":
+    case "lizardscissors":
+      return "decapitates";
+      break;
+    case "lizardpaper":
+    case "paperlizard":
+      return "eats";
+      break;
+    case "paperspock":
+    case "spockpaper":
+      return "disproves";
+      break;
+    case "spockrock":
+    case "rockspock":
+      return "vaporizes";
+      break;
+    case "rockscissors":
+    case "scissorsrock":
+      return "crushes";
+      break;
+  }
+}
+
 function win(userChoice, computerChoice) {
   const smallUserWord = "user".fontsize(3).sub();
   const smallComputerWord = "comp".fontsize(3).sub();
@@ -31,7 +76,7 @@ function win(userChoice, computerChoice) {
   userScore++;
   userScore_span.innerHTML = userScore;
   computerScore_span.innerHTML = computerScore;
-  result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} beats ${convertToWord(computerChoice)}${smallComputerWord}. You win!`;
+  result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} ${getVerb(userChoice, computerChoice)} ${convertToWord(computerChoice)}${smallComputerWord}. You win!`;
   userChoice_div.classList.add('green-glow');
   setTimeout(function() {userChoice_div.classList.remove("green-glow")}, 300);
 }
@@ -43,7 +88,7 @@ function lose(userChoice, computerChoice) {
   computerScore++;
   userScore_span.innerHTML = userScore;
   computerScore_span.innerHTML = computerScore;
-  result_p.innerHTML = `${convertToWord(computerChoice)}${smallComputerWord} beats ${convertToWord(userChoice)}${smallUserWord}. You lose!`;
+  result_p.innerHTML = `${convertToWord(computerChoice)}${smallComputerWord} ${getVerb(userChoice, computerChoice)} ${convertToWord(userChoice)}${smallUserWord}. You lose!`;
   userChoice_div.classList.add('red-glow');
   setTimeout(function() {userChoice_div.classList.remove("red-glow")}, 300);
 }
